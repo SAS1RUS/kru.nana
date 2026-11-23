@@ -72,6 +72,11 @@
 </head>
 <body class="bg-bgLight text-textDark dark:bg-darkBg dark:text-gray-100 transition-colors duration-300 antialiased relative">
 
+  <!-- Smooth Loading Screen -->
+  <div id="page-loader" class="fixed inset-0 z-[200] bg-bgLight dark:bg-darkBg flex flex-col items-center justify-center transition-opacity duration-500">
+    <div class="w-12 h-12 rounded-full border-4 border-pink-100 border-t-primary animate-spin mb-3"></div>
+    <p class="text-xs font-medium text-gray-400 tracking-widest uppercase">Loading...</p>
+  </div>
   <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary z-[60] pointer-events-none transition-all duration-150" style="width: 0%;"></div>
 
   <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -938,8 +943,19 @@
       }
     }
 
+    function hideLoader() {
+      const loader = document.getElementById('page-loader');
+      if (loader) {
+        loader.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => loader.remove(), 500);
+      }
+    }
+
     async function loadFromCloud() {
-      if (!isApiConfigured()) return;
+      if (!isApiConfigured()) {
+        hideLoader();
+        return;
+      }
       try {
         const res = await fetch(API_URL);
         const json = await res.json();
@@ -948,14 +964,23 @@
           if (!siteData.certificates) siteData.certificates = defaultData.certificates;
           if (!siteData.skills) siteData.skills = defaultData.skills;
           if (!siteData.testimonials) siteData.testimonials = defaultData.testimonials;
+          localStorage.setItem('nana_profile_cache', JSON.stringify(siteData));
           renderSite();
         }
       } catch (e) {}
+      hideLoader();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
       initTheme();
-      renderSite();
+      const cached = localStorage.getItem('nana_profile_cache');
+      if (cached) {
+        try {
+          siteData = Object.assign({}, defaultData, JSON.parse(cached));
+          renderSite();
+          hideLoader();
+        } catch (e) {}
+      }
       setupScrollAnimations();
       loadFromCloud();
     });
