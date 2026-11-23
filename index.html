@@ -358,9 +358,10 @@
         <div class="space-y-3">
           <h4 class="font-bold text-primary border-b pb-1">1. Hero & Profile Photo</h4>
           <div class="grid sm:grid-cols-2 gap-3">
-            <div><label class="text-xs text-gray-500">Display Name</label><input id="ed-name" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
-            <div><label class="text-xs text-gray-500">Rotating Roles (separate with | )</label><input id="ed-subtitle" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div><label class="text-xs text-gray-500">Header / Brand Name</label><input id="ed-name" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div><label class="text-xs text-gray-500">Hero Name (Hello, I'm ...)</label><input id="ed-hero-name" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
           </div>
+          <div><label class="text-xs text-gray-500">Rotating Roles (separate with | )</label><input id="ed-subtitle" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
           <div><label class="text-xs text-gray-500">Profile Image URL</label><input id="ed-img" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
           <div><label class="text-xs text-gray-500">Short Bio</label><textarea id="ed-bio" rows="2" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></textarea></div>
         </div>
@@ -595,7 +596,7 @@
 
     function renderSite() {
       document.getElementById('nav-brand').textContent = siteData.name;
-      document.getElementById('hero-name').textContent = siteData.name;
+      document.getElementById('hero-name').textContent = siteData.heroName || "Nana.";
       document.getElementById('footer-name').textContent = siteData.name;
       startTypingEffect(siteData.subtitle);
       document.getElementById('hero-bio').textContent = siteData.bio;
@@ -757,7 +758,8 @@
     }
 
     function populateEditor() {
-      document.getElementById('ed-name').value = siteData.name || '';
+      document.getElementById('ed-name').value = siteData.name || '';document.getElementById('ed-name').value = siteData.name || '';
+      document.getElementById('ed-hero-name').value = siteData.heroName || 'Nana.';
       document.getElementById('ed-subtitle').value = siteData.subtitle || '';
       document.getElementById('ed-img').value = siteData.img || '';
       document.getElementById('ed-bio').value = siteData.bio || '';
@@ -854,7 +856,8 @@
     function removeTestimonialRow(idx) { siteData.testimonials.splice(idx, 1); renderEditorTestimonials(); }
 
     async function saveAllChanges() {
-      siteData.name = document.getElementById('ed-name').value;
+      siteData.name = document.getElementById('ed-name').value;siteData.name = document.getElementById('ed-name').value;
+      siteData.heroName = document.getElementById('ed-hero-name').value;
       siteData.subtitle = document.getElementById('ed-subtitle').value;
       siteData.img = document.getElementById('ed-img').value;
       siteData.bio = document.getElementById('ed-bio').value;
