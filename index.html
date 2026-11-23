@@ -349,7 +349,7 @@
 
       <div id="admin-login-view" class="p-8 text-center space-y-4">
         <p class="text-sm text-gray-500 dark:text-gray-400">Enter your Admin PIN to edit website content (Default: 1234)</p>
-        <input type="password" id="admin-pin-input" placeholder="Enter PIN" class="w-48 text-center px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-primary">
+        <input type="password" id="admin-pin-input" placeholder="Enter PIN" onkeydown="if(event.key==='Enter') verifyAdminPin()" class="w-48 text-center px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-primary">
         <div><button onclick="verifyAdminPin()" class="px-6 py-2.5 rounded-xl bg-primary text-white font-semibold hover:opacity-90 transition">Sign In</button></div>
         <p id="pin-error" class="text-xs text-red-500 hidden">Incorrect PIN. Please try again.</p>
       </div>
