@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nana | English Teacher & Educational Innovator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF85A2',
+            secondary: '#8EC5FF',
+            accent: '#FFD166',
+            bgLight: '#FFF9FB',
+            textDark: '#2D3748',
+            darkBg: '#121520',
+            darkCard: '#1C2132'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+    .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .dark .glass { background: rgba(28, 33, 50, 0.85); }
+    .gradient-text { background: linear-gradient(135deg, #FF85A2 0%, #8EC5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @keyframes blobMove {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(28px, -36px) scale(1.08); }
+      66% { transform: translate(-22px, 24px) scale(0.94); }
+    }
+    .animate-blob { animation: blobMove 12s infinite ease-in-out; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+
+    @keyframes floatY { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    .animate-float { animation: floatY 4s ease-in-out infinite; }
+    .animate-float-delayed { animation: floatY 4.6s ease-in-out 1.2s infinite; }
+
+    @keyframes slowSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animate-spin-slow { animation: slowSpin 26s linear infinite; }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .typing-cursor { display: inline-block; width: 2.5px; height: 1.15em; background-color: #FF85A2; margin-left: 4px; vertical-align: middle; animation: blink 0.85s infinite; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .skill-bar-fill { width: 0%; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+
+    @keyframes modalPop { from { opacity: 0; transform: scale(0.94) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .modal-pop { animation: modalPop 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+    .card-hover { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 35px -12px rgba(255, 133, 162, 0.22); }
+    .dark .card-hover:hover { box-shadow: 0 20px 35px -12px rgba(142, 197, 255, 0.16); }
+  </style>
+</head>
+<body class="bg-bgLight text-textDark dark:bg-darkBg dark:text-gray-100 transition-colors duration-300 antialiased relative">
+
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary z-[60] pointer-events-none transition-all duration-150" style="width: 0%;"></div>
+
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -left-24 w-80 h-80 md:w-[28rem] md:h-[28rem] bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl animate-blob"></div>
+    <div class="absolute top-1/3 -right-24 w-80 h-80 md:w-[26rem] md:h-[26rem] bg-secondary/25 dark:bg-secondary/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-24 left-1/3 w-72 h-72 md:w-96 md:h-96 bg-accent/25 dark:bg-accent/10 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 px-4 py-3 transition-all duration-300">
+    <nav id="main-nav" class="max-w-6xl mx-auto glass rounded-full px-6 py-3 shadow-lg border border-pink-100 dark:border-gray-700 flex items-center justify-between transition-all duration-300">
+      <a href="#home" class="font-heading font-bold text-xl flex items-center gap-2 text-primary group">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-secondary text-white flex items-center justify-center shadow group-hover:rotate-12 transition-transform duration-300">
+          <i class="fa-solid fa-graduation-cap text-sm"></i>
+        </span>
+        <span id="nav-brand">Nana.</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-1 font-medium text-sm">
+        <a href="#about" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">About</a>
+        <a href="#philosophy" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">Philosophy</a>
+        <a href="#projects" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">Projects</a>
+        <a href="#certificates" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">Certificates</a>
+        <a href="#skills" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">Skills</a>
+        <a href="#testimonials" class="px-3 py-2 rounded-full hover:bg-pink-50 dark:hover:bg-gray-800 hover:text-primary transition">Testimonials</a>
+        <a href="#contact" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-pink-400 text-white hover:shadow-md hover:scale-105 transition ml-1">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="openAdminModal()" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-800 hover:bg-pink-100 dark:hover:bg-gray-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-sliders"></i> Admin
+        </button>
+        <button onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:scale-110 transition" title="Toggle Theme">
+          <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-300"></i>
+        </button>
+        <button onclick="toggleMobileMenu()" class="lg:hidden w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden lg:hidden max-w-6xl mx-auto mt-2 glass rounded-2xl p-4 shadow-xl border border-pink-100 dark:border-gray-700 flex-col gap-2 text-sm font-medium">
+      <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">About</a>
+      <a href="#philosophy" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">Philosophy</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">Projects</a>
+      <a href="#certificates" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">Certificates & Awards</a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">Skills</a>
+      <a href="#testimonials" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-pink-50 dark:hover:bg-gray-800">Testimonials</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-primary text-white text-center">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-32 pb-24 px-6 relative">
+    <div class="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
+      <div class="w-full lg:w-1/2 text-center lg:text-left reveal visible">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/90 dark:bg-pink-900/40 text-primary text-xs font-semibold mb-4 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+          Welcome to my classroom
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-3">
+          Hello, I'm <span id="hero-name" class="gradient-text">Nana.</span>
+        </h1>
+        <div class="text-lg md:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-5 min-h-[2rem] flex items-center justify-center lg:justify-start">
+          <span id="hero-typing"></span><span class="typing-cursor"></span>
+        </div>
+        <p id="hero-bio" class="text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+          Transforming language learning through creativity, empathy, and next-generation educational technology. Let's make learning an unforgettable adventure.
+        </p>
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+          <a href="#projects" class="px-7 py-3.5 rounded-full bg-gradient-to-r from-primary to-pink-400 text-white font-semibold shadow-lg shadow-pink-200 dark:shadow-none hover:scale-105 hover:shadow-xl transition-all duration-300">Explore Showcase</a>
+          <a href="#contact" class="px-7 py-3.5 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 font-semibold hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300">Contact Me &rarr;</a>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 flex justify-center reveal visible">
+        <div class="relative w-64 h-64 md:w-96 md:h-96">
+          <div class="absolute inset-0 border-4 border-dashed border-secondary/60 rounded-full pointer-events-none animate-spin-slow"></div>
+          <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl bg-pink-50 group">
+            <img id="hero-img" src="https://placehold.co/600x600/FF85A2/FFFFFF?text=Teacher+Nana" alt="Teacher Nana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <div class="absolute top-6 -left-4 glass px-4 py-2 rounded-2xl shadow-lg border border-white/60 dark:border-gray-700 text-xs font-semibold flex items-center gap-2 animate-float pointer-events-none">
+            <i class="fa-solid fa-apple-whole text-primary"></i> Educator Profile
+          </div>
+          <div class="absolute bottom-8 -right-4 glass px-4 py-2 rounded-2xl shadow-lg border border-white/60 dark:border-gray-700 text-xs font-semibold flex items-center gap-2 animate-float-delayed pointer-events-none">
+            <i class="fa-solid fa-robot text-secondary"></i> AI in Education
+          </div>
+          <div class="absolute -top-2 right-10 text-accent text-2xl animate-pulse pointer-events-none"><i class="fa-solid fa-sparkles"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 bg-white/55 dark:bg-darkCard/40 scroll-mt-24">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">Get to Know Me</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">About Me</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 bg-white dark:bg-darkCard p-8 rounded-3xl shadow-sm border border-pink-50 dark:border-gray-800 card-hover">
+          <h3 class="text-xl font-bold mb-3 text-primary">Professional Biography</h3>
+          <p id="about-text" class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6"></p>
+          <div class="grid sm:grid-cols-2 gap-4 text-sm">
+            <div class="p-4 rounded-2xl bg-bgLight dark:bg-gray-800/60 hover:bg-pink-50/70 dark:hover:bg-gray-800 transition">
+              <div class="font-bold text-primary mb-1"><i class="fa-solid fa-graduation-cap mr-1"></i> Education</div>
+              <div id="about-edu" class="text-gray-600 dark:text-gray-300"></div>
+            </div>
+            <div class="p-4 rounded-2xl bg-bgLight dark:bg-gray-800/60 hover:bg-blue-50/70 dark:hover:bg-gray-800 transition">
+              <div class="font-bold text-secondary mb-1"><i class="fa-solid fa-school mr-1"></i> Focus</div>
+              <div id="about-focus" class="text-gray-600 dark:text-gray-300"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-3xl text-white shadow-lg flex flex-col justify-center card-hover">
+          <i class="fa-solid fa-quote-left text-3xl opacity-60 mb-4"></i>
+          <p id="about-mission" class="text-lg font-medium leading-relaxed mb-4"></p>
+          <div class="text-sm opacity-90 font-semibold">— Teaching Mission</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy & AI Section -->
+  <section id="philosophy" class="py-20 px-6 scroll-mt-24">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <span class="text-secondary font-semibold text-sm uppercase tracking-wider">Core Values</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Teaching Philosophy & AI</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-darkCard p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 card-hover group">
+          <div class="w-12 h-12 rounded-2xl bg-pink-100 text-primary flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><i class="fa-solid fa-heart"></i></div>
+          <h3 class="font-bold text-lg mb-2">Student-Centered</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Empowering learners to take ownership of their growth in a supportive, no-judgment environment.</p>
+        </div>
+        <div class="bg-white dark:bg-darkCard p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 card-hover group">
+          <div class="w-12 h-12 rounded-2xl bg-blue-100 text-secondary flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300"><i class="fa-solid fa-gamepad"></i></div>
+          <h3 class="font-bold text-lg mb-2">Active Learning & Games</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Turning grammar and vocabulary into exciting quests and collaborative classroom missions.</p>
+        </div>
+        <div class="bg-white dark:bg-darkCard p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 card-hover group">
+          <div class="w-12 h-12 rounded-2xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3 class="font-bold text-lg mb-2">AI-Enhanced Education</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Leveraging AI for personalized lesson design, interactive web apps, and future-ready digital literacy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Showcase Carousel -->
+  <section id="projects" class="py-20 px-6 bg-white/55 dark:bg-darkCard/40 scroll-mt-24">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-primary font-semibold text-sm uppercase tracking-wider">Innovation Showcase</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Educational Games & Projects</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="scrollCarousel('projects-carousel', -360)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+          <button onclick="scrollCarousel('projects-carousel', 360)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+        </div>
+      </div>
+      <div id="projects-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory py-2 pb-6 no-scrollbar scroll-smooth"></div>
+    </div>
+  </section>
+
+  <!-- Certificates Showcase Carousel -->
+  <section id="certificates" class="py-20 px-6 scroll-mt-24">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-yellow-500 font-semibold text-sm uppercase tracking-wider">Honors & Development</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Certificates & Achievements</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="scrollCarousel('certificates-carousel', -380)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+          <button onclick="scrollCarousel('certificates-carousel', 380)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+        </div>
+      </div>
+      <div id="certificates-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory py-2 pb-6 no-scrollbar scroll-smooth"></div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-6 bg-white/55 dark:bg-darkCard/40 scroll-mt-24">
+    <div class="max-w-4xl mx-auto reveal" id="skills-reveal-wrapper">
+      <div class="text-center mb-12">
+        <span class="text-secondary font-semibold text-sm uppercase tracking-wider">Expertise</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Skills & Tools</h2>
+      </div>
+      <div id="skills-list" class="grid sm:grid-cols-2 gap-6 bg-white dark:bg-darkCard p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 card-hover"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials Showcase Carousel -->
+  <section id="testimonials" class="py-20 px-6 scroll-mt-24">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-primary font-semibold text-sm uppercase tracking-wider">Voices & Feedback</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Testimonials</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="scrollCarousel('testimonials-carousel', -360)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+          <button onclick="scrollCarousel('testimonials-carousel', 360)" class="w-10 h-10 rounded-full bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 shadow-sm hover:border-primary hover:text-primary hover:scale-110 transition flex items-center justify-center"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+        </div>
+      </div>
+      <div id="testimonials-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory py-2 pb-6 no-scrollbar scroll-smooth"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 bg-white/55 dark:bg-darkCard/40 scroll-mt-24">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="text-center mb-12">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Contact Me</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <div id="contact-info-box" class="bg-white dark:bg-darkCard p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 space-y-5 card-hover">
+          <h3 class="font-bold text-xl mb-2">Connect with Me</h3>
+          <div id="contact-channels" class="space-y-4 text-sm"></div>
+          <div id="contact-socials" class="flex flex-wrap gap-3 pt-3"></div>
+        </div>
+
+        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="bg-white dark:bg-darkCard p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 space-y-4 card-hover">
+          <h3 class="font-bold text-xl mb-2">Send a Message</h3>
+          <input type="text" id="msg-name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-bgLight dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition">
+          <input type="email" id="msg-email" required placeholder="Your Email" class="w-full px-4 py-3 rounded-xl bg-bgLight dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition">
+          <input type="text" id="msg-subject" required placeholder="Subject" class="w-full px-4 py-3 rounded-xl bg-bgLight dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition">
+          <textarea id="msg-body" rows="4" required placeholder="Your Message..." class="w-full px-4 py-3 rounded-xl bg-bgLight dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition"></textarea>
+          <button type="submit" id="msg-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-pink-400 text-white font-semibold hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] shadow-md transition">Send Message</button>
+          <p id="msg-status" class="text-xs text-center hidden"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 text-center text-sm text-gray-500 border-t border-gray-100 dark:border-gray-800">
+    <p>&copy; 2026 <span id="footer-name">Nana</span> | Educator Profile. Built with Creativity & AI.</p>
+  </footer>
+
+  <!-- Scroll-to-Top Floating Button -->
+  <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-secondary text-white shadow-lg flex items-center justify-center opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:scale-110">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Lightbox Preview Modal -->
+  <div id="lightbox-modal" onclick="closeLightbox(event)" class="fixed inset-0 z-[110] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full bg-white dark:bg-darkCard rounded-3xl overflow-hidden shadow-2xl modal-pop" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70 hover:rotate-90 flex items-center justify-center transition duration-300"><i class="fa-solid fa-xmark"></i></button>
+      <div class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center max-h-[70vh] overflow-hidden">
+        <img id="lb-img" src="" alt="Preview" class="w-full h-full object-contain max-h-[70vh]">
+      </div>
+      <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 id="lb-title" class="font-bold text-lg"></h3>
+          <p id="lb-sub" class="text-sm text-gray-500 dark:text-gray-400"></p>
+        </div>
+        <a id="lb-link" href="#" target="_blank" class="hidden px-5 py-2.5 rounded-full bg-primary text-white text-xs font-semibold hover:opacity-90 transition inline-flex items-center gap-2 shrink-0">Open Original Link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="admin-modal" class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-darkCard w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col modal-pop">
+      <div class="px-6 py-4 bg-gradient-to-r from-primary to-secondary text-white flex justify-between items-center">
+        <h3 class="font-bold text-lg"><i class="fa-solid fa-sliders mr-2"></i>Admin Panel</h3>
+        <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="admin-login-view" class="p-8 text-center space-y-4">
+        <p class="text-sm text-gray-500 dark:text-gray-400">Enter your Admin PIN to edit website content (Default: 1234)</p>
+        <input type="password" id="admin-pin-input" placeholder="Enter PIN" class="w-48 text-center px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-primary">
+        <div><button onclick="verifyAdminPin()" class="px-6 py-2.5 rounded-xl bg-primary text-white font-semibold hover:opacity-90 transition">Sign In</button></div>
+        <p id="pin-error" class="text-xs text-red-500 hidden">Incorrect PIN. Please try again.</p>
+      </div>
+
+      <div id="admin-editor-view" class="hidden flex-1 overflow-y-auto p-6 space-y-6 text-sm">
+        <div class="space-y-3">
+          <h4 class="font-bold text-primary border-b pb-1">1. Hero & Profile Photo</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div><label class="text-xs text-gray-500">Display Name</label><input id="ed-name" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div><label class="text-xs text-gray-500">Rotating Roles (separate with | )</label><input id="ed-subtitle" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+          </div>
+          <div><label class="text-xs text-gray-500">Profile Image URL</label><input id="ed-img" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+          <div><label class="text-xs text-gray-500">Short Bio</label><textarea id="ed-bio" rows="2" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></textarea></div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-bold text-primary border-b pb-1">2. About Me</h4>
+          <div><label class="text-xs text-gray-500">Biography</label><textarea id="ed-about" rows="2" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></textarea></div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div><label class="text-xs text-gray-500">Education</label><input id="ed-edu" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div><label class="text-xs text-gray-500">Specialization</label><input id="ed-focus" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+          </div>
+          <div><label class="text-xs text-gray-500">Teaching Mission</label><input id="ed-mission" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b pb-1">
+            <h4 class="font-bold text-primary">3. Projects & Games Showcase</h4>
+            <button onclick="addProjectRow()" class="text-xs px-2.5 py-1 rounded-lg bg-pink-100 text-primary font-semibold">+ Add Project</button>
+          </div>
+          <div id="ed-projects-list" class="space-y-3"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b pb-1">
+            <h4 class="font-bold text-primary">4. Certificates & Achievements Showcase</h4>
+            <button onclick="addCertRow()" class="text-xs px-2.5 py-1 rounded-lg bg-yellow-100 text-yellow-700 font-semibold">+ Add Certificate</button>
+          </div>
+          <div id="ed-certs-list" class="space-y-3"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b pb-1">
+            <h4 class="font-bold text-primary">5. Skills & Tools (Toggle Show/Hide)</h4>
+            <button onclick="addSkillRow()" class="text-xs px-2.5 py-1 rounded-lg bg-purple-100 text-purple-600 font-semibold">+ Add Skill</button>
+          </div>
+          <div id="ed-skills-list" class="space-y-2.5"></div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center border-b pb-1">
+            <h4 class="font-bold text-primary">6. Testimonials (Feedback)</h4>
+            <button onclick="addTestimonialRow()" class="text-xs px-2.5 py-1 rounded-lg bg-blue-100 text-blue-600 font-semibold">+ Add Feedback</button>
+          </div>
+          <div id="ed-testimonials-list" class="space-y-3"></div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-bold text-primary border-b pb-1">7. Contact Channels (Toggle Show/Hide)</h4>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2"><input type="checkbox" id="vis-email"><span class="w-20 text-xs">Email</span><input id="ed-email" class="flex-1 p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div class="flex items-center gap-2"><input type="checkbox" id="vis-location"><span class="w-20 text-xs">Location</span><input id="ed-location" class="flex-1 p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div class="flex items-center gap-2"><input type="checkbox" id="vis-facebook"><span class="w-20 text-xs">Facebook</span><input id="ed-facebook" placeholder="https://facebook.com/..." class="flex-1 p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div class="flex items-center gap-2"><input type="checkbox" id="vis-instagram"><span class="w-20 text-xs">Instagram</span><input id="ed-instagram" placeholder="https://instagram.com/..." class="flex-1 p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+            <div class="flex items-center gap-2"><input type="checkbox" id="vis-line"><span class="w-20 text-xs">LINE</span><input id="ed-line" placeholder="https://line.me/ti/p/..." class="flex-1 p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700"></div>
+          </div>
+          <div class="pt-2">
+            <label class="text-xs text-gray-500">Change Admin PIN (Leave blank to keep current PIN)</label>
+            <input id="ed-new-pin" type="password" placeholder="New PIN" class="w-full p-2 rounded-lg border dark:bg-gray-800 dark:border-gray-700">
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-footer" class="hidden px-6 py-4 bg-gray-50 dark:bg-gray-800/80 border-t dark:border-gray-700 flex justify-between items-center">
+        <span id="save-status" class="text-xs text-gray-500">Ready to save</span>
+        <button onclick="saveAllChanges()" id="save-btn" class="px-6 py-2.5 rounded-xl bg-green-500 text-white font-semibold hover:bg-green-600 transition">
+          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Save All Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // วางลิงก์ Google Apps Script Web App (/exec) ของคุณตรงนี้
+    // =========================================================================
+    const API_URL = "https://script.google.com/macros/s/AKfycbwsz4qxe_HPy_wvY07zk3uSkde2-1Todc9mK9W_Ys6aHjP_YB6SG4PD2q32o0NPWJm3jA/exec";
+
+    const defaultData = {
+      adminPin: "1234",
+      name: "Nana.",
+      subtitle: "English Teacher | Educational Innovator | AI Enthusiast | Game Designer",
+      bio: "Transforming language learning through creativity, empathy, and next-generation educational technology. Let's make learning an unforgettable adventure.",
+      img: "https://placehold.co/600x600/FF85A2/FFFFFF?text=Teacher+Nana",
+      about: "I am a passionate English teacher dedicated to creating joyful, student-centered classrooms. By blending Active Learning with AI and interactive educational games, I help students build real-world English confidence.",
+      edu: "B.Ed. in English (Second-Class Honors)",
+      focus: "Active Learning, Gamification & AI EdTech",
+      mission: "Correct is great, mistake is okay. Every classroom should be a safe space to explore, create, and grow.",
+      projects: [
+        { title: "Past Simple Adventure", desc: "Interactive web quest helping students master past tense through storytelling.", tech: "HTML / JS / AI", img: "https://placehold.co/600x360/FF85A2/FFFFFF?text=Past+Simple+Adventure", link: "" },
+        { title: "Vocabulary Quest", desc: "Fast-paced classroom game for building everyday English vocabulary.", tech: "Gamification", img: "https://placehold.co/600x360/8EC5FF/FFFFFF?text=Vocabulary+Quest", link: "" },
+        { title: "Grammar Mystery", desc: "Detective-themed grammar challenge designed for secondary students.", tech: "Web App", img: "https://placehold.co/600x360/FFD166/2D3748?text=Grammar+Mystery", link: "" }
+      ],
+      certificates: [
+        { title: "Teaching English Innovation with AI & CEFR", issuer: "HCEC Teacher Training", year: "2026", type: "Workshop", img: "https://placehold.co/800x560/FFF0F5/FF85A2?text=AI+%26+CEFR+Certificate", link: "" },
+        { title: "Upper-Intermediate English Proficiency (CEFR B2)", issuer: "EF Standard English Test (EF SET)", year: "2026", type: "Certificate", img: "https://placehold.co/800x560/EEF6FF/8EC5FF?text=EF+SET+B2+Certificate", link: "" },
+        { title: "Coaching & Mentoring with Digital Technology", issuer: "Educational Development Program", year: "2026", type: "Training", img: "https://placehold.co/800x560/FFFBEB/D97706?text=Digital+Coaching+Award", link: "" },
+        { title: "Fun & Effective Speaking Activities for Teens", issuer: "Practical Teaching Workshop", year: "2025", type: "Certificate", img: "https://placehold.co/800x560/F3E8FF/9333EA?text=Speaking+Workshop+Cert", link: "" }
+      ],
+      skills: [
+        { name: "English Teaching", level: 95, show: true },
+        { name: "AI & EdTech Tools", level: 92, show: true },
+        { name: "Canva & Visual Design", level: 90, show: true },
+        { name: "Google Workspace", level: 90, show: true },
+        { name: "Educational Game Design", level: 88, show: true },
+        { name: "Classroom Management", level: 94, show: true }
+      ],
+      testimonials: [
+        { quote: "Teacher Nana's classes are always full of energy! The interactive games make English grammar so much easier and fun to remember.", author: "M.3 Student", role: "Student" },
+        { quote: "Collaborating with Nana on digital learning games has inspired our entire department. She brings fresh creativity and tech fluency to every lesson.", author: "Fellow English Teacher", role: "Colleague" },
+        { quote: "An exemplary young educator who seamlessly integrates Active Learning and AI tools while maintaining a warm, supportive classroom atmosphere.", author: "Academic Supervisor", role: "Supervisor" }
+      ],
+      contact: {
+        email: "nana.teacher@example.com", showEmail: true,
+        location: "Foreign Languages Dept., Room 312", showLocation: true,
+        facebook: "https://facebook.com", showFacebook: true,
+        instagram: "https://instagram.com", showInstagram: true,
+        line: "https://line.me", showLine: true
+      }
+    };
+
+    let siteData = JSON.parse(JSON.stringify(defaultData));
+    let currentPinUsed = "";
+    let skillsAnimated = false;
+    let typingTimer = null, typingRoles = [], roleIdx = 0, charIdx = 0, isDeleting = false;
+
+    function isApiConfigured() {
+      return API_URL && API_URL.startsWith("https://script.google.com/");
+    }
+
+    function startTypingEffect(subtitleStr) {
+      if (typingTimer) clearTimeout(typingTimer);
+      typingRoles = String(subtitleStr || defaultData.subtitle).split('|').map(s => s.trim()).filter(Boolean);
+      if (typingRoles.length === 0) typingRoles = ["English Teacher"];
+      roleIdx = 0; charIdx = 0; isDeleting = false;
+      typeTick();
+    }
+
+    function typeTick() {
+      const el = document.getElementById('hero-typing');
+      if (!el) return;
+      const currentRole = typingRoles[roleIdx % typingRoles.length];
+      if (!isDeleting) {
+        charIdx++;
+        el.textContent = currentRole.slice(0, charIdx);
+        if (charIdx === currentRole.length) { isDeleting = true; typingTimer = setTimeout(typeTick, 1800); return; }
+        typingTimer = setTimeout(typeTick, 75);
+      } else {
+        charIdx--;
+        el.textContent = currentRole.slice(0, charIdx);
+        if (charIdx === 0) { isDeleting = false; roleIdx = (roleIdx + 1) % typingRoles.length; typingTimer = setTimeout(typeTick, 350); return; }
+        typingTimer = setTimeout(typeTick, 40);
+      }
+    }
+
+    function esc(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function scrollCarousel(id, amount) {
+      const el = document.getElementById(id);
+      if (el) el.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+
+    function openLightbox(img, title, sub, link) {
+      document.getElementById('lb-img').src = img;
+      document.getElementById('lb-title').textContent = title;
+      document.getElementById('lb-sub').textContent = sub;
+      const linkBtn = document.getElementById('lb-link');
+      if (link && link !== '#') { linkBtn.href = link; linkBtn.classList.remove('hidden'); }
+      else { linkBtn.classList.add('hidden'); }
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightbox() { document.getElementById('lightbox-modal').classList.add('hidden'); }
+
+    function initTheme() {
+      const saved = localStorage.getItem('nana_theme');
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').className = 'fa-solid fa-sun text-yellow-300';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon').className = 'fa-solid fa-moon text-gray-600';
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('nana_theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-icon').className = isDark ? 'fa-solid fa-sun text-yellow-300' : 'fa-solid fa-moon text-gray-600';
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden'); menu.classList.toggle('flex');
+    }
+
+    function animateSkillBars() {
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-level') + '%';
+      });
+    }
+
+    function setupScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.id === 'skills-reveal-wrapper') {
+              skillsAnimated = true;
+              setTimeout(animateSkillBars, 150);
+            }
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const bar = document.getElementById('scroll-progress');
+        if (bar) bar.style.width = progress + '%';
+
+        const btt = document.getElementById('back-to-top');
+        if (btt) {
+          if (scrollTop > 350) btt.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+          else btt.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        }
+      });
+    }
+
+    function renderSite() {
+      document.getElementById('nav-brand').textContent = siteData.name;
+      document.getElementById('hero-name').textContent = siteData.name;
+      document.getElementById('footer-name').textContent = siteData.name;
+      startTypingEffect(siteData.subtitle);
+      document.getElementById('hero-bio').textContent = siteData.bio;
+      document.getElementById('hero-img').src = siteData.img || defaultData.img;
+      document.getElementById('about-text').textContent = siteData.about;
+      document.getElementById('about-edu').textContent = siteData.edu;
+      document.getElementById('about-focus').textContent = siteData.focus;
+      document.getElementById('about-mission').textContent = '"' + siteData.mission + '"';
+
+      const projGrid = document.getElementById('projects-carousel');
+      projGrid.innerHTML = '';
+      (siteData.projects || []).forEach((p, idx) => {
+        const thumb = p.img || 'https://placehold.co/600x360/FF85A2/FFFFFF?text=Project+Preview';
+        const linkBtn = (p.link && p.link !== '#') ? `<a href="${esc(p.link)}" target="_blank" class="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1">Launch <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>` : '';
+        projGrid.innerHTML += `
+          <div class="min-w-[300px] sm:min-w-[340px] max-w-[340px] snap-start bg-white dark:bg-darkCard rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden flex flex-col card-hover shrink-0">
+            <div onclick="previewProject(${idx})" class="relative h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden cursor-pointer group">
+              <img src="${esc(thumb)}" alt="${esc(p.title)}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition duration-300 flex items-center justify-center">
+                <span class="opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 bg-white/95 text-gray-800 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow transition duration-300"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Preview</span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-pink-50 dark:bg-pink-900/30 text-primary mb-2.5">${esc(p.tech || 'EdTech')}</span>
+                <h3 class="font-bold text-lg mb-1.5">${esc(p.title)}</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">${esc(p.desc)}</p>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-gray-50 dark:border-gray-800">
+                <button onclick="previewProject(${idx})" class="text-xs font-semibold text-gray-500 hover:text-primary transition">View Larger</button>
+                ${linkBtn}
+              </div>
+            </div>
+          </div>`;
+      });
+
+      const certGrid = document.getElementById('certificates-carousel');
+      certGrid.innerHTML = '';
+      (siteData.certificates || defaultData.certificates).forEach((c, idx) => {
+        const certImg = c.img || 'https://placehold.co/800x560/FFF0F5/FF85A2?text=Certificate';
+        const linkBtn = (c.link && c.link !== '#') ? `<a href="${esc(c.link)}" target="_blank" class="text-xs font-semibold text-secondary hover:underline inline-flex items-center gap-1">Verify <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>` : '';
+        certGrid.innerHTML += `
+          <div class="min-w-[300px] sm:min-w-[360px] max-w-[360px] snap-start bg-white dark:bg-darkCard rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden flex flex-col card-hover shrink-0">
+            <div onclick="previewCert(${idx})" class="relative h-52 bg-gray-50 dark:bg-gray-900 overflow-hidden cursor-pointer group border-b border-gray-100 dark:border-gray-800">
+              <img src="${esc(certImg)}" alt="${esc(c.title)}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute top-3 left-3 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/90 text-gray-800 shadow-sm">${esc(c.year || '2026')}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary text-white shadow-sm">${esc(c.type || 'Certificate')}</span>
+              </div>
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition duration-300 flex items-center justify-center">
+                <span class="opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 bg-white/95 text-gray-800 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow transition duration-300"><i class="fa-solid fa-expand mr-1"></i> Zoom</span>
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-bold text-base leading-snug mb-1">${esc(c.title)}</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">${esc(c.issuer)}</p>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-gray-50 dark:border-gray-800">
+                <button onclick="previewCert(${idx})" class="text-xs font-semibold text-gray-500 hover:text-primary transition">Expand View</button>
+                ${linkBtn}
+              </div>
+            </div>
+          </div>`;
+      });
+
+      const skillsSection = document.getElementById('skills');
+      const skillsEl = document.getElementById('skills-list');
+      skillsEl.innerHTML = '';
+      const visibleSkills = (siteData.skills || []).filter(s => s.show !== false);
+      if (visibleSkills.length === 0) {
+        skillsSection.classList.add('hidden');
+      } else {
+        skillsSection.classList.remove('hidden');
+        visibleSkills.forEach(s => {
+          const lvl = Math.max(0, Math.min(100, Number(s.level) || 0));
+          const initWidth = skillsAnimated ? lvl + '%' : '0%';
+          skillsEl.innerHTML += `
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1.5"><span>${esc(s.name)}</span><span class="text-primary">${lvl}%</span></div>
+              <div class="w-full h-2.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full skill-bar-fill" data-level="${lvl}" style="width:${initWidth}"></div>
+              </div>
+            </div>`;
+        });
+      }
+
+      const testGrid = document.getElementById('testimonials-carousel');
+      testGrid.innerHTML = '';
+      (siteData.testimonials || defaultData.testimonials).forEach(t => {
+        const roleLower = String(t.role || '').toLowerCase();
+        const badgeStyle = roleLower.includes('supervisor') ? 'bg-yellow-50 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'
+          : roleLower.includes('colleague') ? 'bg-blue-50 dark:bg-blue-900/30 text-secondary'
+          : 'bg-pink-50 dark:bg-pink-900/30 text-primary';
+        testGrid.innerHTML += `
+          <div class="min-w-[300px] sm:min-w-[360px] max-w-[360px] snap-start bg-white dark:bg-darkCard p-7 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col justify-between card-hover shrink-0">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <i class="fa-solid fa-quote-left text-2xl text-primary/40"></i>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold ${badgeStyle}">${esc(t.role || 'Feedback')}</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic mb-6">"${esc(t.quote)}"</p>
+            </div>
+            <div class="flex items-center gap-3 pt-4 border-t border-gray-50 dark:border-gray-800">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary text-white flex items-center justify-center font-bold text-sm shadow-sm"><i class="fa-solid fa-user"></i></div>
+              <div>
+                <div class="font-bold text-sm">${esc(t.author)}</div>
+                <div class="text-xs text-gray-400">${esc(t.role || 'Feedback')}</div>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      const c = siteData.contact || defaultData.contact;
+      const chEl = document.getElementById('contact-channels');
+      const socEl = document.getElementById('contact-socials');
+      chEl.innerHTML = ''; socEl.innerHTML = '';
+      if (c.showEmail && c.email) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-pink-100 text-primary flex items-center justify-center"><i class="fa-solid fa-envelope"></i></span><span>${esc(c.email)}</span></div>`;
+      if (c.showLocation && c.location) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-blue-100 text-secondary flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span><span>${esc(c.location)}</span></div>`;
+      if (c.showFacebook && c.facebook) socEl.innerHTML += `<a href="${esc(c.facebook)}" target="_blank" class="px-4 py-2 rounded-full bg-blue-50 text-blue-600 font-semibold text-xs hover:bg-blue-100 hover:scale-105 transition"><i class="fa-brands fa-facebook mr-1"></i> Facebook</a>`;
+      if (c.showInstagram && c.instagram) socEl.innerHTML += `<a href="${esc(c.instagram)}" target="_blank" class="px-4 py-2 rounded-full bg-pink-50 text-pink-600 font-semibold text-xs hover:bg-pink-100 hover:scale-105 transition"><i class="fa-brands fa-instagram mr-1"></i> Instagram</a>`;
+      if (c.showLine && c.line) socEl.innerHTML += `<a href="${esc(c.line)}" target="_blank" class="px-4 py-2 rounded-full bg-green-50 text-green-600 font-semibold text-xs hover:bg-green-100 hover:scale-105 transition"><i class="fa-brands fa-line mr-1"></i> LINE</a>`;
+      document.getElementById('contact-info-box').classList.toggle('hidden', !chEl.innerHTML && !socEl.innerHTML);
+    }
+
+    function previewProject(idx) {
+      const p = (siteData.projects || [])[idx];
+      if (p) openLightbox(p.img || 'https://placehold.co/600x360/FF85A2/FFFFFF?text=Project+Preview', p.title, p.desc, p.link);
+    }
+
+    function previewCert(idx) {
+      const c = (siteData.certificates || [])[idx];
+      if (c) openLightbox(c.img || 'https://placehold.co/800x560/FFF0F5/FF85A2?text=Certificate', c.title, (c.issuer || '') + ' • ' + (c.year || ''), c.link);
+    }
+
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.remove('hidden');
+      document.getElementById('admin-login-view').classList.remove('hidden');
+      document.getElementById('admin-editor-view').classList.add('hidden');
+      document.getElementById('admin-footer').classList.add('hidden');
+      document.getElementById('admin-pin-input').value = '';
+      document.getElementById('pin-error').classList.add('hidden');
+    }
+
+    function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
+
+    function verifyAdminPin() {
+      const input = document.getElementById('admin-pin-input').value.trim();
+      if (input === String(siteData.adminPin || "1234")) {
+        currentPinUsed = input;
+        document.getElementById('admin-login-view').classList.add('hidden');
+        document.getElementById('admin-editor-view').classList.remove('hidden');
+        document.getElementById('admin-footer').classList.remove('hidden');
+        populateEditor();
+      } else {
+        document.getElementById('pin-error').classList.remove('hidden');
+      }
+    }
+
+    function populateEditor() {
+      document.getElementById('ed-name').value = siteData.name || '';
+      document.getElementById('ed-subtitle').value = siteData.subtitle || '';
+      document.getElementById('ed-img').value = siteData.img || '';
+      document.getElementById('ed-bio').value = siteData.bio || '';
+      document.getElementById('ed-about').value = siteData.about || '';
+      document.getElementById('ed-edu').value = siteData.edu || '';
+      document.getElementById('ed-focus').value = siteData.focus || '';
+      document.getElementById('ed-mission').value = siteData.mission || '';
+
+      const c = siteData.contact || defaultData.contact;
+      document.getElementById('vis-email').checked = !!c.showEmail; document.getElementById('ed-email').value = c.email || '';
+      document.getElementById('vis-location').checked = !!c.showLocation; document.getElementById('ed-location').value = c.location || '';
+      document.getElementById('vis-facebook').checked = !!c.showFacebook; document.getElementById('ed-facebook').value = c.facebook || '';
+      document.getElementById('vis-instagram').checked = !!c.showInstagram; document.getElementById('ed-instagram').value = c.instagram || '';
+      document.getElementById('vis-line').checked = !!c.showLine; document.getElementById('ed-line').value = c.line || '';
+      document.getElementById('ed-new-pin').value = '';
+
+      if (!siteData.certificates) siteData.certificates = JSON.parse(JSON.stringify(defaultData.certificates));
+      if (!siteData.skills) siteData.skills = JSON.parse(JSON.stringify(defaultData.skills));
+      if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(defaultData.testimonials));
+
+      renderEditorProjects(); renderEditorCerts(); renderEditorSkills(); renderEditorTestimonials();
+    }
+
+    function renderEditorProjects() {
+      const list = document.getElementById('ed-projects-list'); list.innerHTML = '';
+      (siteData.projects || []).forEach((p, idx) => {
+        list.innerHTML += `
+          <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-800 space-y-2 border dark:border-gray-700">
+            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Project #${idx + 1}</span><button onclick="removeProjectRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div>
+            <div class="grid sm:grid-cols-2 gap-2">
+              <input value="${esc(p.title)}" onchange="siteData.projects[${idx}].title=this.value" placeholder="Project Title" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+              <input value="${esc(p.tech)}" onchange="siteData.projects[${idx}].tech=this.value" placeholder="Tag (e.g., HTML / AI)" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            </div>
+            <input value="${esc(p.desc)}" onchange="siteData.projects[${idx}].desc=this.value" placeholder="Short description" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            <input value="${esc(p.img)}" onchange="siteData.projects[${idx}].img=this.value" placeholder="Preview Image URL" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            <input value="${esc(p.link)}" onchange="siteData.projects[${idx}].link=this.value" placeholder="External Link URL (Optional)" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+          </div>`;
+      });
+    }
+    function addProjectRow() { siteData.projects.push({ title: "New Project", desc: "Short description...", tech: "EdTech", img: "", link: "" }); renderEditorProjects(); }
+    function removeProjectRow(idx) { siteData.projects.splice(idx, 1); renderEditorProjects(); }
+
+    function renderEditorCerts() {
+      const list = document.getElementById('ed-certs-list'); list.innerHTML = '';
+      (siteData.certificates || []).forEach((c, idx) => {
+        list.innerHTML += `
+          <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-800 space-y-2 border dark:border-gray-700">
+            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Certificate #${idx + 1}</span><button onclick="removeCertRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div>
+            <input value="${esc(c.title)}" onchange="siteData.certificates[${idx}].title=this.value" placeholder="Certificate / Award Title" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            <div class="grid sm:grid-cols-3 gap-2">
+              <input value="${esc(c.issuer)}" onchange="siteData.certificates[${idx}].issuer=this.value" placeholder="Issuer" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+              <input value="${esc(c.year)}" onchange="siteData.certificates[${idx}].year=this.value" placeholder="Year" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+              <input value="${esc(c.type)}" onchange="siteData.certificates[${idx}].type=this.value" placeholder="Type" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            </div>
+            <input value="${esc(c.img)}" onchange="siteData.certificates[${idx}].img=this.value" placeholder="Certificate Image URL" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            <input value="${esc(c.link)}" onchange="siteData.certificates[${idx}].link=this.value" placeholder="Verification / Drive Link (Optional)" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+          </div>`;
+      });
+    }
+    function addCertRow() { siteData.certificates.push({ title: "New Certificate / Award", issuer: "Organization", year: "2026", type: "Certificate", img: "", link: "" }); renderEditorCerts(); }
+    function removeCertRow(idx) { siteData.certificates.splice(idx, 1); renderEditorCerts(); }
+
+    function renderEditorSkills() {
+      const list = document.getElementById('ed-skills-list'); list.innerHTML = '';
+      (siteData.skills || []).forEach((s, idx) => {
+        const isShown = s.show !== false;
+        list.innerHTML += `
+          <div class="p-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border dark:border-gray-700 flex flex-wrap sm:flex-nowrap items-center gap-2">
+            <label class="flex items-center gap-1.5 text-xs text-gray-500 shrink-0 cursor-pointer"><input type="checkbox" ${isShown ? 'checked' : ''} onchange="siteData.skills[${idx}].show=this.checked"><span>Show</span></label>
+            <input value="${esc(s.name)}" onchange="siteData.skills[${idx}].name=this.value" placeholder="Skill Name" class="flex-1 min-w-[140px] p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            <div class="flex items-center gap-1 shrink-0"><input type="number" min="0" max="100" value="${Number(s.level) || 0}" onchange="siteData.skills[${idx}].level=Math.max(0,Math.min(100,Number(this.value)||0))" class="w-16 p-1.5 rounded border text-xs text-center dark:bg-gray-900 dark:border-gray-700"><span class="text-xs text-gray-500">%</span></div>
+            <button onclick="removeSkillRow(${idx})" class="text-xs text-red-500 hover:underline px-1 shrink-0">Remove</button>
+          </div>`;
+      });
+    }
+    function addSkillRow() { siteData.skills.push({ name: "New Skill", level: 85, show: true }); renderEditorSkills(); }
+    function removeSkillRow(idx) { siteData.skills.splice(idx, 1); renderEditorSkills(); }
+
+    function renderEditorTestimonials() {
+      const list = document.getElementById('ed-testimonials-list'); list.innerHTML = '';
+      (siteData.testimonials || []).forEach((t, idx) => {
+        list.innerHTML += `
+          <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-800 space-y-2 border dark:border-gray-700">
+            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Feedback #${idx + 1}</span><button onclick="removeTestimonialRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div>
+            <textarea rows="2" onchange="siteData.testimonials[${idx}].quote=this.value" placeholder="Feedback quote..." class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">${esc(t.quote)}</textarea>
+            <div class="grid sm:grid-cols-2 gap-2">
+              <input value="${esc(t.author)}" onchange="siteData.testimonials[${idx}].author=this.value" placeholder="Author Name" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+              <input value="${esc(t.role)}" onchange="siteData.testimonials[${idx}].role=this.value" placeholder="Role (Student / Colleague / Supervisor)" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
+            </div>
+          </div>`;
+      });
+    }
+    function addTestimonialRow() { siteData.testimonials.push({ quote: "Great learning experience!", author: "Student Name", role: "Student" }); renderEditorTestimonials(); }
+    function removeTestimonialRow(idx) { siteData.testimonials.splice(idx, 1); renderEditorTestimonials(); }
+
+    async function saveAllChanges() {
+      siteData.name = document.getElementById('ed-name').value;
+      siteData.subtitle = document.getElementById('ed-subtitle').value;
+      siteData.img = document.getElementById('ed-img').value;
+      siteData.bio = document.getElementById('ed-bio').value;
+      siteData.about = document.getElementById('ed-about').value;
+      siteData.edu = document.getElementById('ed-edu').value;
+      siteData.focus = document.getElementById('ed-focus').value;
+      siteData.mission = document.getElementById('ed-mission').value;
+      siteData.contact = {
+        email: document.getElementById('ed-email').value, showEmail: document.getElementById('vis-email').checked,
+        location: document.getElementById('ed-location').value, showLocation: document.getElementById('vis-location').checked,
+        facebook: document.getElementById('ed-facebook').value, showFacebook: document.getElementById('vis-facebook').checked,
+        instagram: document.getElementById('ed-instagram').value, showInstagram: document.getElementById('vis-instagram').checked,
+        line: document.getElementById('ed-line').value, showLine: document.getElementById('vis-line').checked
+      };
+      const newPin = document.getElementById('ed-new-pin').value.trim();
+      if (newPin) siteData.adminPin = newPin;
+
+      renderSite();
+      const statusEl = document.getElementById('save-status');
+      const btn = document.getElementById('save-btn');
+      statusEl.textContent = "Saving to Google Sheets...";
+      btn.disabled = true;
+
+      if (isApiConfigured()) {
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'save', pin: currentPinUsed, data: siteData })
+          });
+          const json = await res.json();
+          statusEl.textContent = json.success ? "Saved to Google Sheets!" : "Save failed: " + json.message;
+          if (json.success && newPin) currentPinUsed = newPin;
+        } catch (err) {
+          statusEl.textContent = "Error: " + err.message;
+        } finally {
+          btn.disabled = false;
+        }
+      } else {
+        localStorage.setItem('nana_profile_local', JSON.stringify(siteData));
+        btn.disabled = false;
+        statusEl.textContent = "Saved locally (Please set API_URL)";
+      }
+    }
+
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('msg-btn');
+      const st = document.getElementById('msg-status');
+      btn.disabled = true; btn.textContent = "Sending...";
+
+      const formObj = {
+        name: document.getElementById('msg-name').value,
+        email: document.getElementById('msg-email').value,
+        subject: document.getElementById('msg-subject').value,
+        message: document.getElementById('msg-body').value
+      };
+
+      if (isApiConfigured()) {
+        try {
+          await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'contact', form: formObj })
+          });
+          st.textContent = "Message sent successfully. Thank you!";
+          st.className = "text-xs text-center text-green-500 block";
+          document.getElementById('contact-form').reset();
+        } catch (err) {
+          st.textContent = "Failed to send message. Please try again.";
+          st.className = "text-xs text-center text-red-500 block";
+        } finally {
+          btn.disabled = false; btn.textContent = "Send Message";
+        }
+      } else {
+        btn.disabled = false; btn.textContent = "Send Message";
+        st.textContent = "Message sent (Preview Mode)";
+        st.className = "text-xs text-center text-green-500 block";
+        document.getElementById('contact-form').reset();
+      }
+    }
+
+    async function loadFromCloud() {
+      if (!isApiConfigured()) return;
+      try {
+        const res = await fetch(API_URL);
+        const json = await res.json();
+        if (json && json.success && json.data) {
+          siteData = Object.assign({}, defaultData, json.data);
+          if (!siteData.certificates) siteData.certificates = defaultData.certificates;
+          if (!siteData.skills) siteData.skills = defaultData.skills;
+          if (!siteData.testimonials) siteData.testimonials = defaultData.testimonials;
+          renderSite();
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderSite();
+      setupScrollAnimations();
+      loadFromCloud();
+    });
+  </script>
+</body>
+</html>
