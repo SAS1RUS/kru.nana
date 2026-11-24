@@ -719,8 +719,8 @@
       const chEl = document.getElementById('contact-channels');
       const socEl = document.getElementById('contact-socials');
       chEl.innerHTML = ''; socEl.innerHTML = '';
-      if (c.showEmail && c.email) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-pink-100 text-primary flex items-center justify-center"><i class="fa-solid fa-envelope"></i></span><span>${esc(c.email)}</span></div>`;
-      if (c.showLocation && c.location) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-blue-100 text-secondary flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span><span>${esc(c.location)}</span></div>`;
+      if (c.showEmail && c.email) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 shrink-0 rounded-full bg-pink-100 text-primary flex items-center justify-center"><i class="fa-solid fa-envelope"></i></span><span>${esc(c.email)}</span></div>`;
+      if (c.showLocation && c.location) chEl.innerHTML += `<div class="flex items-center gap-3"><span class="w-9 h-9 shrink-0 rounded-full bg-blue-100 text-secondary flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span><span>${esc(c.location)}</span></div>`;
       if (c.showFacebook && c.facebook) socEl.innerHTML += `<a href="${esc(c.facebook)}" target="_blank" class="px-4 py-2 rounded-full bg-blue-50 text-blue-600 font-semibold text-xs hover:bg-blue-100 hover:scale-105 transition"><i class="fa-brands fa-facebook mr-1"></i> Facebook</a>`;
       if (c.showInstagram && c.instagram) socEl.innerHTML += `<a href="${esc(c.instagram)}" target="_blank" class="px-4 py-2 rounded-full bg-pink-50 text-pink-600 font-semibold text-xs hover:bg-pink-100 hover:scale-105 transition"><i class="fa-brands fa-instagram mr-1"></i> Instagram</a>`;
       if (c.showLine && c.line) socEl.innerHTML += `<a href="${esc(c.line)}" target="_blank" class="px-4 py-2 rounded-full bg-green-50 text-green-600 font-semibold text-xs hover:bg-green-100 hover:scale-105 transition"><i class="fa-brands fa-line mr-1"></i> LINE</a>`;
