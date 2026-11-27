@@ -804,7 +804,7 @@
       (siteData.projects || []).forEach((p, idx) => {
         list.innerHTML += `
           <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-800 space-y-2 border dark:border-gray-700">
-            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Project #${idx + 1}</span><button onclick="removeProjectRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div>
+            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Project #${idx + 1}</span><div class="flex items-center gap-1.5"><button type="button" onclick="moveProjectRow(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-xs disabled:opacity-30" title="เลื่อนขึ้น"><i class="fa-solid fa-arrow-up"></i></button><button type="button" onclick="moveProjectRow(${idx}, 1)" ${idx === siteData.projects.length - 1 ? 'disabled' : ''} class="px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-xs disabled:opacity-30" title="เลื่อนลง"><i class="fa-solid fa-arrow-down"></i></button><button onclick="removeProjectRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div></div>
             <div class="grid sm:grid-cols-2 gap-2">
               <input value="${esc(p.title)}" onchange="siteData.projects[${idx}].title=this.value" placeholder="Project Title" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
               <input value="${esc(p.tech)}" onchange="siteData.projects[${idx}].tech=this.value" placeholder="Tag (e.g., HTML / AI)" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
@@ -817,13 +817,25 @@
     }
     function addProjectRow() { siteData.projects.push({ title: "New Project", desc: "Short description...", tech: "EdTech", img: "", link: "" }); renderEditorProjects(); }
     function removeProjectRow(idx) { siteData.projects.splice(idx, 1); renderEditorProjects(); }
+    function moveProjectRow(idx, dir) {
+  const t = idx + dir;
+  if (t < 0 || t >= siteData.projects.length) return;
+  [siteData.projects[idx], siteData.projects[t]] = [siteData.projects[t], siteData.projects[idx]];
+  renderEditorProjects();
+}
+function moveCertRow(idx, dir) {
+  const t = idx + dir;
+  if (t < 0 || t >= siteData.certificates.length) return;
+  [siteData.certificates[idx], siteData.certificates[t]] = [siteData.certificates[t], siteData.certificates[idx]];
+  renderEditorCerts();
+}
 
     function renderEditorCerts() {
       const list = document.getElementById('ed-certs-list'); list.innerHTML = '';
       (siteData.certificates || []).forEach((c, idx) => {
         list.innerHTML += `
           <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-800 space-y-2 border dark:border-gray-700">
-            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Certificate #${idx + 1}</span><button onclick="removeCertRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div>
+            <div class="flex justify-between items-center"><span class="text-xs font-bold text-gray-500">Certificate #${idx + 1}</span><div class="flex items-center gap-1.5"><button type="button" onclick="moveCertRow(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-xs disabled:opacity-30" title="เลื่อนขึ้น"><i class="fa-solid fa-arrow-up"></i></button><button type="button" onclick="moveCertRow(${idx}, 1)" ${idx === siteData.certificates.length - 1 ? 'disabled' : ''} class="px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-xs disabled:opacity-30" title="เลื่อนลง"><i class="fa-solid fa-arrow-down"></i></button><button onclick="removeCertRow(${idx})" class="text-xs text-red-500 hover:underline">Remove</button></div></div>
             <input value="${esc(c.title)}" onchange="siteData.certificates[${idx}].title=this.value" placeholder="Certificate / Award Title" class="w-full p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
             <div class="grid sm:grid-cols-3 gap-2">
               <input value="${esc(c.issuer)}" onchange="siteData.certificates[${idx}].issuer=this.value" placeholder="Issuer" class="p-1.5 rounded border text-xs dark:bg-gray-900 dark:border-gray-700">
